@@ -1,8 +1,8 @@
-import React, { Component, Form } from "react";
+import React, { Component } from "react";
 //import { withRouter } from "react-router-dom";
-import axios from 'axios';
+//import axios from 'axios';
 
-// import { Form, Container } from './styles';
+import { Form, Container } from './styles';
 import { login } from "../../services/auth";
 import api from "../../services/api";
 //import { withRouter } from "react-router-dom";
@@ -23,8 +23,7 @@ class Login extends Component {
 			});
 		} else {
 			try {
-				const response = await axios.post;
-				await api.post("/auth", {user, senha_usuario});
+				const response = await api.post("/auth", {user, senha_usuario});
 				login(response.data.token);
 				this.props.history.push("/app");
 			} catch (err){
@@ -38,6 +37,7 @@ class Login extends Component {
 	
 	render(){
 		return (
+			<Container>
 				<Form onSubmit={this.handleLogin}>
 					{ this.state.error && <p>{this.state.error}</p>}
 					<p>Usuário
@@ -50,6 +50,7 @@ class Login extends Component {
 					</p>
 					<button type="submit">Entrar</button>
 				</Form>
+			</Container>
 		);
 	}
 }
